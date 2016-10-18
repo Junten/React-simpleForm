@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/api/comments', function(req, res) {
+app.get('/comments', function(req, res) {
   fs.readFile(COMMENTS_FILE, function(err, data) {
     if (err) {
       console.error(err);
@@ -45,7 +45,7 @@ app.get('/api/comments', function(req, res) {
   });
 });
 
-app.post('/api/comments', function(req, res) {
+app.post('/comments', function(req, res) {
   fs.readFile(COMMENTS_FILE, function(err, data) {
     if (err) {
       console.error(err);
@@ -58,7 +58,9 @@ app.post('/api/comments', function(req, res) {
     var newComment = {
       id: Date.now(),
       author: req.body.author,
+      email: req.body.email,
       text: req.body.text,
+      subject: req.body.subject,
     };
     comments.push(newComment);
     fs.writeFile(COMMENTS_FILE, JSON.stringify(comments, null, 4), function(err) {
