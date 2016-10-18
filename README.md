@@ -12,4 +12,3 @@ node server.js
 
 ## Database
 I used a json file(comments.json) as my database.
-
